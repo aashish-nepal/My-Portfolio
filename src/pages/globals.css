@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+/* Custom styles */
+:root {
+  --foreground-rgb: 23, 23, 23; /* Neutral-900 */
+  --background-start-rgb: 250, 250, 250; /* Neutral-50 */
+  --background-end-rgb: 255, 255, 255;
+  --primary-rgb: 79, 70, 229; /* Indigo-600 */
+  --secondary-rgb: 99, 102, 241; /* Indigo-500 */
+  --header-bg-scrolled: rgba(243, 244, 246, 0.95);  /* gray-50 with opacity */
+  --text-primary: #1f2937;  /* gray-800 */
+  --text-secondary: #4b5563; /* gray-600 */
+  --bg-primary: #f9fafb; /* gray-50 */
+  --accent-color: #4f46e5; /* indigo-600 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 245, 245, 245; /* Neutral-100 */
+    --background-start-rgb: 10, 10, 10; /* Neutral-950 */
+    --background-end-rgb: 23, 23, 23; /* Neutral-900 */
+    --primary-rgb: 129, 140, 248; /* Indigo-400 */
+    --secondary-rgb: 165, 180, 252; /* Indigo-300 */
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+    rgb(var(--background-start-rgb));
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enhanced dark mode classes */
+.dark {
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  --tw-border-opacity: 1;
+  --header-bg-scrolled: #000000; /* Black background in dark mode */
+  --text-primary: #f3f4f6;  /* gray-100 */
+  --text-secondary: #d1d5db; /* gray-300 */
+  --bg-primary: #111827; /* gray-900 */
+  --accent-color: #818cf8; /* indigo-400 */
+  color: rgb(229, 231, 235); /* Gray-200 */
+}
+
+/* Background overrides */
+.dark .bg-white {
+  background-color: rgb(31, 41, 55) !important; /* Gray-800 */
+}
+
+.dark .bg-gray-50 {
+  background-color: rgb(17, 24, 39) !important; /* Gray-900 */
+}
+
+/* Text overrides */
+.dark .text-gray-900 {
+  color: rgb(243, 244, 246) !important; /* Gray-100 */
+}
+
+.dark .text-gray-700 {
+  color: rgb(209, 213, 219) !important; /* Gray-300 */
+}
+
+.dark .text-gray-600 {
+  color: rgb(156, 163, 175) !important; /* Gray-400 */
+}
+
+.dark .text-gray-500 {
+  color: rgb(107, 114, 128) !important; /* Gray-500 */
+}
+
+.dark .text-gray-800 {
+  color: rgb(255, 255, 255) !important; /* white in dark mode */
+}
+
+/* Border overrides */
+.dark .border-gray-100 {
+  border-color: rgb(55, 65, 81) !important; /* Gray-700 */
+}
+
+.dark .border-gray-200 {
+  border-color: rgb(75, 85, 99) !important; /* Gray-600 */
+}
+
+/* Hover states */
+.dark .hover\:bg-gray-100:hover {
+  background-color: rgb(55, 65, 81) !important; /* Gray-700 */
+}
+
+.dark .hover\:text-gray-900:hover {
+  color: rgb(243, 244, 246) !important; /* Gray-100 */
+}
+
+/* Special components */
+.dark .prose {
+  color: rgb(229, 231, 235); /* Gray-200 */
+}
+
+.dark .prose a {
+  color: rgb(129, 140, 248); /* Indigo-400 */
+}
+
+.dark .prose strong {
+  color: rgb(255, 255, 255);
+}
+
+/* Custom transitions */
+.transition-colors {
+  transition-property: color, background-color, border-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Custom shadows for dark mode */
+.dark .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgb(31, 41, 55); /* Gray-800 */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(75, 85, 99); /* Gray-600 */
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(107, 114, 128); /* Gray-500 */
+}
+
+/* Buttons */
+.dark .btn-work {
+  background-image: linear-gradient(to right, #4f46e5, #2563eb); /* indigo to blue */
+  color: white !important;
+}
+
+.dark .btn-connect {
+  background-color: white !important;
+  color: #111827 !important; /* gray-900 */
+}
+
+/* Dark mode gradient for Explore Projects span */
+.dark .explore-btn-span {
+  background-image: linear-gradient(to right, #4f46e5, #2563eb);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Dark mode white background for Download CV span */
+.dark .download-btn-span {
+  background-color: white !important;
+  color: #111827 !important;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Section overrides */
+.dark #about {
+  background-image: linear-gradient(to bottom right, #111827, #1f2937); /* dark gradient */
+}
+
+.dark .bg-gradient-to-br.from-gray-50.to-white {
+  background: #1f2937; /* solid dark */
+}
+
+.dark .bg-gradient-to-b.from-gray-50.to-indigo-50 {
+  background-image: linear-gradient(to bottom, #1f2937, #111827);
+}
+
+.dark .bg-gray-100.text-gray-700 {
+  background: linear-gradient(to right, #4f46e5, #2563eb);
+  color: #f3f4f6;
+}
+
+.dark #contact.bg-gradient-to-b.from-gray-50.to-white {
+  background: none !important;
+}
+
+/* White placeholder text in dark mode */
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #ffffff;
+  opacity: 0.3;
+}
+
+/* Header specific styles */
+.header-scrolled {
+  background-color: var(--header-bg-scrolled);
+  backdrop-filter: blur(8px);
+}
+
+/* Force header black background in dark mode */
+.dark .header-scrolled {
+  background-color: #000000 !important;
+  backdrop-filter: blur(8px);
+}
+
+/* Custom scrollbar for light mode */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
