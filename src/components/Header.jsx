@@ -1,4 +1,3 @@
-// components/Header.js
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -90,12 +89,20 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled 
+    <header className={`fixed w-full z-50 transition-all duration-300
+      ${scrolled 
         ? 'header-scrolled shadow-sm py-3' 
-        : 'bg-transparent py-5'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        : 'py-4 md:py-5'}
+      ${
+        mobileMenuOpen
+          ? 'bg-white dark:bg-gray-900'
+          : scrolled
+            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm'
+            : 'bg-transparent'
+      }
+    `}>
+    
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex justify-between items-center">
           {/* Logo */}
           <motion.div
@@ -113,14 +120,14 @@ export default function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
                 </svg>
               </span>
-              <span className="hidden sm:inline text-xl font-semibold text-gray-800 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              <span className="text-xl font-semibold text-gray-800 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                 Aashish Nepal
               </span>
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8 items-center">
+          {/* Desktop Navigation - Shown on md screens and up */}
+          <div className="hidden md:flex space-x-6 lg:space-x-8 items-center">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -167,15 +174,15 @@ export default function Header() {
               }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="ml-4 bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white px-5 py-2.5 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all"
+              className="ml-2 lg:ml-4 bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white px-4 py-2 lg:px-5 lg:py-2.5 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all"
               onClick={() => handleNavClick('#contact')}
             >
               Hire Me
             </motion.button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
+          {/* Mobile Menu Button - Shown on sm screens and down */}
+          <div className="flex md:hidden items-center space-x-3 sm:space-x-4">
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors"
@@ -225,7 +232,7 @@ export default function Header() {
               }}
               className="md:hidden overflow-hidden"
             >
-              <div className="pt-4 pb-2 space-y-1">
+              <div className="pt-2 pb-4 space-y-1">
                 {navItems.map((item) => (
                   <motion.div
                     key={item.name}
