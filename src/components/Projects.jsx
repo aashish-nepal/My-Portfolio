@@ -127,7 +127,7 @@ export default function Projects() {
           className="text-center mt-16"
         >
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/aashish-nepal"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300 shadow-sm"
             target="_blank"
             rel="noopener noreferrer"
