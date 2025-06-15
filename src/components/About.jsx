@@ -464,12 +464,21 @@ export default function About() {
                       </motion.button>
 
                       <motion.button
-                        className="relative px-4 sm:px-6 py-2 sm:py-3 border border-gray-900 dark:border-gray-900 text-gray-900 dark:text-gray-300 rounded-md sm:rounded-lg bg-transparent text-sm sm:text-base"
-                        whileHover={{
-                          backgroundColor: "rgba(243, 244, 246, 1)",
-                          scale: 1.03,
-                        }}
+                        type="button"
+                        className="download-btn relative px-4 sm:px-6 py-2 sm:py-3 border border-gray-900 dark:border-gray-900 
+             text-gray-900 dark:text-gray-300 
+             rounded-md sm:rounded-lg bg-transparent text-sm sm:text-base 
+             transition-colors cursor-pointer focus:outline-none"
+                        whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.98 }}
+                        onClick={() => {
+                          const link = document.createElement("a");
+                          link.href = "/files/Aashish_Nepal.pdf";
+                          link.download = "Aashish_Nepal.pdf";
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                        }}
                       >
                         <span className="relative z-10 font-medium flex items-center">
                           <span>Download CV</span>
@@ -484,7 +493,7 @@ export default function About() {
                               strokeLinejoin="round"
                               strokeWidth="2"
                               d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                            ></path>
+                            />
                           </svg>
                         </span>
                       </motion.button>

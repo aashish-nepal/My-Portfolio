@@ -222,3 +222,8 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-color);
 }
+
+.dark .download-btn:hover {
+  background-color: white !important;
+  color: #111827 !important;
+}
