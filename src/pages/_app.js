@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
       <Header />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <Component {...pageProps} />
       </main>
       <Footer />
