@@ -38,9 +38,6 @@ function MyApp({ Component, pageProps }) {
         <meta name="twitter:description" content="Explore the portfolio of Aashish Nepal, a full-stack developer based in Nepal." />
         <meta name="twitter:image" content="https://www.aashish-nepal.com.np/images/profile.jpg" />
 
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

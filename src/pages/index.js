@@ -11,6 +11,7 @@ export default function Home() {
       <Head>
         <title>Aashish Nepal | Software Developer</title>
         <link rel="canonical" href="https://www.aashish-nepal.com.np/" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Hero />
