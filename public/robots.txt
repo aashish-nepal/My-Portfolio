@@ -2,8 +2,6 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://www.aashish-nepal.com.np/
 
 # Sitemaps
 Sitemap: https://www.aashish-nepal.com.np/sitemap.xml
