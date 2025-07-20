@@ -474,7 +474,7 @@ export default function About() {
                         onClick={() => {
                           const link = document.createElement("a");
                           link.href = "/files/Aashish_Nepal.pdf";
-                          link.download = "Aashish_Nepal.pdf";
+                          link.download = "Aashish_Nepal_Resume.pdf";
                           document.body.appendChild(link);
                           link.click();
                           document.body.removeChild(link);
