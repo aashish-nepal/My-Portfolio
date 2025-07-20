@@ -40,7 +40,7 @@ export const experiences = [
       title: 'Smart Care Connects',
       description: 'A full-featured healthcare platform enabling real-time consultations between patients and doctors. Focused on user interface design, accessibility, and performance.',
       technologies: ['Next.js', 'NodeMailer', 'Twilio WebRTC', 'Google FireBase', 'Tailwind CSS'],
-      githubUrl: 'https://github.com/aashish-nepal/Smart-Care-Connects',
+      githubUrl: 'https://smart-care-connects-4ffh.vercel.app/',
       liveUrl: '#',
       image: '/images/smart-care.png'
     },
