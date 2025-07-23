@@ -106,25 +106,51 @@ export default function Header() {
         <nav className="flex justify-between items-center">
           {/* Logo */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <Link 
-              href="/" 
-              className="flex items-center group"
-              aria-label="Home"
-            >
-              <span className="bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 text-white p-2 rounded-lg mr-2 transition-all duration-300 group-hover:rotate-6">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
-                </svg>
-              </span>
-              <span className="text-xl font-semibold text-gray-800 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+  initial={{ opacity: 0, x: -20 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.5, ease: "easeOut" }}
+>
+  <Link href="/" className="flex items-center group" aria-label="Home">
+    {/* Custom Nepal-Inspired Logo Mark */}
+    <span className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-blue-500 dark:from-indigo-700 dark:to-blue-600 shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-0.5">
+      
+      {/* Hidden "AN" Monogram (Negative Space) */}
+      <svg 
+        viewBox="0 0 100 100" 
+        className="h-6 w-6 fill-current text-white dark:text-indigo-100"
+      >
+        {/* A + N merged into a single shape with a mountain peak */}
+        <path d="M20 80 L50 20 L80 80 L65 80 L50 50 L35 80 Z" />
+        
+        {/* Moon + Sun (Subtle Nepal Symbolism) */}
+        <circle cx="70" cy="30" r="5" fill="currentColor" />
+        <path d="M70 20 L70 10 M60 30 L50 30 M70 40 L70 50 M80 30 L90 30" 
+              stroke="currentColor" stroke-width="4" />
+      </svg>
+      
+      {/* Floating Dot (Personal Touch) */}
+      <motion.span 
+        className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-yellow-400 shadow-sm"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.8, 1, 0.8] 
+        }}
+        transition={{ 
+          duration: 2, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+      />
+    </span>
+
+    {/* Text with Custom Styling */}
+    <span className="ml-3 text-2xl font-bold tracking-tight">
+    </span>
+     <span className="text-xl font-semibold text-gray-800 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                 Aashish Nepal
               </span>
-            </Link>
-          </motion.div>
+  </Link>
+</motion.div>
 
           {/* Desktop Navigation - Shown on md screens and up */}
           <div className="hidden md:flex space-x-6 lg:space-x-8 items-center">

@@ -1,13 +1,37 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 const techList = [
-  { name: 'React', zIndex: 4 },
-  { name: 'Next', zIndex: 3 },
-  { name: 'JS', zIndex: 2 },
-  { name: 'Web', zIndex: 1 },
+  {
+    name: "React",
+    zIndex: 4,
+    bgColor: "bg-gradient-to-br from-cyan-500 to-blue-600",
+    textColor: "text-white",
+    shadow: "shadow-lg shadow-blue-500/20",
+  },
+  {
+    name: "Next",
+    zIndex: 3,
+    bgColor: "bg-gradient-to-br from-gray-900 to-black",
+    textColor: "text-white",
+    shadow: "shadow-lg shadow-gray-800/20",
+  },
+  {
+    name: "JS",
+    zIndex: 2,
+    bgColor: "bg-gradient-to-br from-yellow-400 to-yellow-500", // JS brand yellow gradient
+    textColor: "text-gray-900",
+    shadow: "shadow-lg shadow-yellow-500/30",
+  },
+  {
+    name: "Web",
+    zIndex: 1,
+    bgColor: "bg-gradient-to-br from-green-500 to-emerald-600",
+    textColor: "text-white",
+    shadow: "shadow-lg shadow-green-500/20",
+  },
 ];
 
 export default function Hero() {
@@ -26,16 +50,18 @@ export default function Hero() {
               Web Developer
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-              <span className="text-gray-900">Innovative</span>{' '}
+              <span className="text-gray-900">Innovative</span>{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">
                 Solutions
-              </span>{' '}
+              </span>{" "}
               <span className="block">Through Code</span>
             </h1>
 
             <div className="border-l-4 border-indigo-500 pl-3 md:pl-4 mb-6 md:mb-8">
               <p className="text-base md:text-lg text-gray-600 max-w-lg leading-relaxed">
-                I architect seamless digital experiences by blending cutting-edge technology with intuitive design. Specializing in React, Next.js, and cloud-native applications.
+                I architect seamless digital experiences by blending
+                cutting-edge technology with intuitive design. Specializing in
+                React, Next.js, and cloud-native applications.
               </p>
             </div>
 
@@ -47,7 +73,9 @@ export default function Hero() {
                 className="btn-work flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-3.5 bg-gray-900 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 Explore My Work
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
+                <span className="group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
               </motion.a>
 
               <motion.a
@@ -61,22 +89,44 @@ export default function Hero() {
             </div>
 
             {/* Tech stack indicators */}
-            <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center">
-              <div className="flex -space-x-2 mr-0 sm:mr-4 mb-3 sm:mb-0">
-                {techList.map((tech) => (
-                  <div
-                    key={tech.name}
-                    className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white border-2 border-white flex items-center justify-center shadow-md"
-                    style={{ zIndex: tech.zIndex }}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, staggerChildren: 0.1 }}
+              className="mt-10 md:mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-4"
+            ></motion.div>
+
+            <div className="flex -space-x-3 mr-0 sm:mr-6 items-center">
+              {techList.map((tech) => (
+                <motion.div
+                  key={tech.name}
+                  whileHover={{ y: -4, scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className={`
+          w-9 h-9 md:w-11 md:h-11 rounded-full ${tech.bgColor} ${tech.shadow}
+          border-2 border-white/20 flex items-center justify-center
+          backdrop-blur-sm transition-all duration-300 hover:border-white/40
+        `}
+                  style={{ zIndex: tech.zIndex }}
+                >
+                  <span
+                    className={`text-xs font-semibold ${tech.textColor} tracking-tight`}
                   >
-                    <span className="text-xs font-bold text-gray-700">{tech.name}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="text-sm text-gray-500">
-                Technologies I work with daily
-              </div>
+                    {tech.name}
+                  </span>
+                </motion.div>
+              ))}
+              <motion.p 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 0.8 }}
+    transition={{ delay: 0.3 }}
+    className="text-sm text-gray-500 font-sm ml-6"
+  >
+    Technologies I work with daily
+  </motion.p>
             </div>
+            
+            
           </motion.div>
 
           {/* Image with creative frame - Hidden on smallest screens */}
@@ -102,7 +152,9 @@ export default function Hero() {
             {/* Decorative badge - Hidden on mobile */}
             <div className="hidden sm:flex absolute -right-4 md:-right-6 -bottom-4 md:-bottom-6 bg-white px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-lg border border-gray-100 items-center">
               <div className="w-2 h-2 md:w-3 md:h-3 bg-green-500 rounded-full mr-1 md:mr-2 animate-pulse"></div>
-              <span className="text-xs md:text-sm font-medium text-gray-700">Available</span>
+              <span className="text-xs md:text-sm font-medium text-gray-700">
+                Available
+              </span>
             </div>
           </motion.div>
         </div>
