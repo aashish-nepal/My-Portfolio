@@ -41,7 +41,7 @@ export const experiences = [
       description: 'A full-featured healthcare platform enabling real-time consultations between patients and doctors. Focused on user interface design, accessibility, and performance.',
       technologies: ['Next.js', 'NodeMailer', 'Twilio WebRTC', 'Google FireBase', 'Tailwind CSS'],
       githubUrl: 'https://github.com/aashish-nepal/Smart-Care-Connects',
-      liveUrl: 'https://smart-care-connects-4ffh.vercel.app/',
+      liveUrl: 'https://smartcareconnect.vercel.app/',
       image: '/images/smart-care.png'
     },
     {
@@ -50,8 +50,8 @@ export const experiences = [
       description: 'A full-featured e-commerce platform with product listings and Good UI-Designs.',
       technologies: ['Next.js', 'Fake-Store Api', 'Bootstrap', 'Material UI'],
       githubUrl: 'https://github.com/aashish-nepal/Ecommerce-Site',
-      liveUrl: 'https://marketo01.netlify.app/',
-      image: '/images/marketo.png'
+      liveUrl: 'https://marketonepal.vercel.app/',
+      image: '/images/Marketo.png'
     },
     {
       id: 3,
