@@ -51,7 +51,7 @@ export const experiences = [
       technologies: ['Next.js', 'Fake-Store Api', 'Bootstrap', 'Material UI'],
       githubUrl: 'https://github.com/aashish-nepal/Ecommerce-Site',
       liveUrl: 'https://marketonepal.vercel.app/',
-      image: '/images/Marketo.png'
+      image: '/images/marketo.png'
     },
     {
       id: 3,
