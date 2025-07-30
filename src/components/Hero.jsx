@@ -140,7 +140,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl md:rounded-3xl transform -rotate-1 shadow-lg md:shadow-xl"></div>
             <div className="absolute inset-0 border-4 md:border-8 border-white rounded-2xl md:rounded-3xl overflow-hidden shadow-md md:shadow-lg">
               <Image
-                src="/images/my-img.jpg"
+                src="/images/profile.jpg"
                 alt="Aashish Nepal - Web Developer"
                 fill
                 className="object-cover object-top"
