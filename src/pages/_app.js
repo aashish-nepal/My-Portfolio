@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content="Aashish Nepal | Software Developer" />
         <meta property="og:description" content="Explore the portfolio of Aashish Nepal, a full-stack developer based in Nepal." />
-        <meta property="og:image" content="https://www.aashish-nepal.com.np/images/profile.jpg" />
+        <meta property="og:image" content="https://www.aashish-nepal.com.np/images/Profile.jpg" />
         <meta property="og:url" content="https://www.aashish-nepal.com.np" />
         <meta property="og:type" content="website" />
 
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Aashish Nepal | Software Developer" />
         <meta name="twitter:description" content="Explore the portfolio of Aashish Nepal, a full-stack developer based in Nepal." />
-        <meta name="twitter:image" content="https://www.aashish-nepal.com.np/images/profile.jpg" />
+        <meta name="twitter:image" content="https://www.aashish-nepal.com.np/images/Profile.jpg" />
 
         {/* JSON-LD Structured Data */}
         <script
@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
               "@type": "Person",
               "name": "Aashish Nepal",
               "url": "https://www.aashish-nepal.com.np",
-              "image": "https://www.aashish-nepal.com.np/images/profile.jpg",
+              "image": "https://www.aashish-nepal.com.np/images/Profile.jpg",
               "jobTitle": "Full Stack Developer",
               "sameAs": [
                 "https://www.linkedin.com/in/aashish-nepal-56247727b/",
