@@ -52,7 +52,6 @@ function MyApp({ Component, pageProps }) {
               "sameAs": [
                 "https://www.linkedin.com/in/aashish-nepal-56247727b/",
                 "https://github.com/aashish-nepal",
-                "https://twitter.com/aashishnepal"
               ],
               "description": "Aashish Nepal is a full-stack web developer based in Nepal, skilled in React, Next.js, Firebase, and modern web technologies."
             }),
