@@ -1,143 +1,230 @@
-import { projects } from '../utils/constants';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { FiGithub, FiArrowUpRight } from 'react-icons/fi';
+import { projects } from "../utils/constants";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { FiGithub, FiArrowUpRight } from "react-icons/fi";
 
-// Smooth, high-end animation variants
+// Refined animation variants
 const container = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
   },
 };
 
 const item = {
-  hidden: { y: 40, opacity: 0 },
+  hidden: {
+    y: 60,
+    opacity: 0,
+    scale: 0.95,
+  },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { type: "spring", stiffness: 100, damping: 20 },
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 85,
+      damping: 20,
+      mass: 0.8,
+    },
   },
 };
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-32 bg-gray-50 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        
-        {/* Editorial Header Design */}
+    <section
+      id="projects"
+      className="relative py-32 overflow-hidden
+             bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]
+             from-indigo-200/20 via-transparent to-transparent
+             dark:from-indigo-900/20 dark:via-transparent dark:to-transparent"
+    >
+      {/* Animated gradient mesh */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,#6366f120,#a855f720,#22d3ee20,#6366f120)]
+                    blur-3xl opacity-70 animate-[spin_30s_linear_infinite] dark:opacity-40"
+        />
+      </div>
+
+      {/* Subtle grid overlay */}
+      <div
+        className="pointer-events-none absolute inset-0
+               bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),
+                   linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)]
+               bg-[size:48px_48px]
+               dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),
+                        linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]"
+      />
+
+      {/* Noise texture (adds depth) */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.06]"
+        style={{
+          backgroundImage:
+            'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.4"/></svg>\')',
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Minimalist Header with Accent Line */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
+          className="mb-12 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-4"
         >
           <div className="max-w-2xl">
-          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
               Selected{" "}
-              <span className="italic font-light text-indigo-600/90">
-                Works
-              </span>
-              .
+              <span className="italic font-light text-indigo-600/90">Works</span>.
             </h2>
           </div>
           <div className="hidden md:block h-px flex-1 bg-gray-200 dark:bg-gray-800 mx-10 mb-5" />
         </motion.div>
 
-        {/* Asymmetric Staggered Grid */}
+        {/* Projects Grid with Card Overlap Effect */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24"
         >
           {projects.map((project, index) => (
-            <motion.div
+            <motion.article
               key={project.id}
               variants={item}
-              className={`group relative ${index % 2 !== 0 ? 'md:mt-32' : ''}`}
+              className="relative group"
             >
-              {/* Image Container with Custom Frame */}
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-200 dark:bg-gray-800 shadow-2xl transition-all duration-500 group-hover:shadow-indigo-500/10">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-all duration-700 group-hover:scale-105 grayscale-[30%] group-hover:grayscale-0"
-                  quality={100}
-                />
-                
-                {/* Modern Hover Overlay */}
-                <div className="absolute inset-0 bg-gray-900/60 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-[2px] flex items-center justify-center gap-5">
-                    {project.githubUrl && (
-                        <a 
-                          href={project.githubUrl} 
-                          target="_blank" 
-                          className="p-4 bg-white/10 hover:bg-white text-white hover:text-indigo-600 border border-white/20 rounded-full transition-all duration-300 transform hover:scale-110"
-                        >
-                            <FiGithub className="w-6 h-6" />
-                        </a>
-                    )}
-                    {project.liveUrl && (
-                        <a 
-                          href={project.liveUrl} 
-                          target="_blank" 
-                          className="p-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg"
-                        >
-                            <FiArrowUpRight className="w-6 h-6" />
-                        </a>
-                    )}
+              {/* Project Number Indicator */}
+              <div className="absolute -left-6 -top-6 z-20">
+                <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg shadow-lg transform -rotate-6">
+                  <span className="text-white font-bold text-lg">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
               </div>
 
-              {/* Content Styling - Aligned with your CSS variables */}
-              <div className="mt-8 space-y-4">
-                <div className="flex justify-between items-baseline">
-                    <h3 className="text-3xl font-bold tracking-tight text-gray-900 group-hover:text-indigo-600 transition-colors">
-                        {project.title}
+              {/* Card with Depth Effect */}
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700">
+                {/* Image Container with Gradient Overlay */}
+                <div className="relative aspect-video overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent z-10"></div>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    quality={100}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+
+                  {/* Live Preview Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-20 flex items-end justify-between p-8">
+                    <div>
+                      <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm font-medium border border-white/20">
+                        Live Preview
+                      </span>
+                    </div>
+                    <div className="flex gap-3">
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-3 bg-white/10 hover:bg-white backdrop-blur-sm text-white hover:text-gray-900 rounded-full transition-all duration-300 transform hover:scale-110 border border-white/20"
+                          aria-label={`View ${project.title} source code`}
+                        >
+                          <FiGithub className="w-5 h-5" />
+                        </a>
+                      )}
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg flex items-center gap-2"
+                          aria-label={`Visit ${project.title} live site`}
+                        >
+                          <span className="text-sm font-medium">Visit</span>
+                          <FiArrowUpRight className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content Area */}
+                <div className="p-8">
+                  <div className="mb-4">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                      {project.title}
                     </h3>
-                    <span className="text-sm font-mono text-gray-400 tracking-widest uppercase">
-                        prj — 0{index + 1}
-                    </span>
-                </div>
-                
-                <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed line-clamp-2">
-                  {project.description}
-                </p>
+                    <div className="flex items-center gap-3 mt-2">
+                      <span className="text-xs font-mono text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        {project.category || "Web Application"}
+                      </span>
+                      <span className="text-gray-300 dark:text-gray-600">
+                        •
+                      </span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        {project.year || "2024"}
+                      </span>
+                    </div>
+                  </div>
 
-                <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
-                  {project.technologies.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="text-[11px] uppercase tracking-[0.2em] font-bold text-indigo-600/80 dark:text-indigo-400"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-2 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies Pill */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 rounded-full border border-indigo-100 dark:border-indigo-800/50"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Hover Indicator Line */}
+                  <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 group-hover:w-full transition-all duration-500"></div>
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
 
-        {/* Footer Link - Using your custom btn-work logic */}
+        {/* Archive CTA with Animated Border */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="mt-40 text-center"
+          viewport={{ once: true }}
+          className="mt-0 pt-16 border-t border-gray-100 dark:border-gray-800"
         >
-          <a
-            href="https://github.com/aashish-nepal"
-            className="group relative inline-flex items-center text-xl font-bold tracking-tight uppercase py-4"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="relative z-10 text-gray-900 dark:text-white">View Archive</span>
-            <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-indigo-600 origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-500"></div>
-            <FiArrowUpRight className="ml-3 text-indigo-600 transition-transform duration-300 group-hover:rotate-45" />
-          </a>
+          <div className="text-center">
+            <a
+              href="https://github.com/aashish-nepal"
+              className="group relative inline-flex items-center gap-4 px-8 py-4 text-gray-900 dark:text-white font-medium rounded-full border-2 border-gray-200 dark:border-gray-700 hover:border-transparent transition-all duration-300 overflow-hidden"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="relative z-10">View Complete Archive</span>
+              <FiArrowUpRight className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+
+              {/* Animated Background */}
+              <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></span>
+
+              {/* Animated Border */}
+              <span className="absolute inset-0 border-2 border-transparent group-hover:border-white/20 rounded-full transition-all duration-500"></span>
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

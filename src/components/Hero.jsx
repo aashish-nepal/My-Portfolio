@@ -1,160 +1,167 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FaReact, FaJs, FaGlobe } from "react-icons/fa";
+import { SiNextdotjs } from "react-icons/si";
+import { useRef } from "react";
 
 const techList = [
   {
-    name: "React",
+    Icon: FaReact,
     zIndex: 4,
-    bgColor: "bg-gradient-to-br from-cyan-500 to-blue-600",
+    bgColor: "bg-gradient-to-r from-cyan-500 to-blue-600",
     textColor: "text-white",
-    shadow: "shadow-lg shadow-blue-500/20",
+    shadow: "shadow-lg shadow-cyan-500/30",
   },
   {
-    name: "Next",
+    Icon: SiNextdotjs,
     zIndex: 3,
     bgColor: "bg-gradient-to-br from-gray-900 to-black",
     textColor: "text-white",
-    shadow: "shadow-lg shadow-gray-800/20",
+    shadow: "shadow-lg shadow-black/40",
   },
   {
-    name: "JS",
+    Icon: FaJs,
     zIndex: 2,
-    bgColor: "bg-gradient-to-br from-yellow-400 to-yellow-500", // JS brand yellow gradient
+    bgColor: "bg-gradient-to-r from-yellow-400 to-amber-500",
     textColor: "text-gray-900",
-    shadow: "shadow-lg shadow-yellow-500/30",
+    shadow: "shadow-lg shadow-yellow-500/40",
   },
   {
-    name: "Web",
+    Icon: FaGlobe,
     zIndex: 1,
-    bgColor: "bg-gradient-to-br from-green-500 to-emerald-600",
+    bgColor: "bg-gradient-to-br from-emerald-500 to-green-600",
     textColor: "text-white",
-    shadow: "shadow-lg shadow-green-500/20",
+    shadow: "shadow-lg shadow-emerald-500/30",
   },
 ];
 
 export default function Hero() {
-  return (
-    <section id="home" className="min-h-screen flex items-center pt-16 md:pt-0">
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 relative overflow-hidden">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center relative z-10 py-12 md:py-24">
-          {/* Text Content - Now comes first on mobile */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="order-last lg:order-first"
-          >
-            <div className="uppercase tracking-widest text-xs mb-3 md:mb-4 text-indigo-600 font-semibold">
-              Web Developer
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-              <span className="text-gray-900">Innovative</span>{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">
-                Solutions
-              </span>{" "}
-              <span className="block">Through Code</span>
-            </h1>
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
 
-            <div className="border-l-4 border-indigo-500 pl-3 md:pl-4 mb-6 md:mb-8">
-              <p className="text-base md:text-lg text-gray-600 max-w-lg leading-relaxed">
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
+  return (
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 "
+    >
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-16 py-4">
+          {/* LEFT CONTENT */}
+          <div className="w-full lg:w-3/5">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-block py-1 px-3 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold tracking-widest uppercase mb-6 border border-indigo-100">
+                Based in Nepal &bull; Remote Friendly
+              </span>
+
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-[0.9] tracking-tighter mb-8">
+                CRAFTING <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">
+                  DIGITAL
+                </span>{" "}
+                <br />
+                ARTEFACTS.
+              </h1>
+
+              <p className="text-sm md:text-xl text-gray-500 max-w-xl leading-relaxed mb-10 font-medium text-justify">
                 I architect seamless digital experiences by blending
                 cutting-edge technology with intuitive design. Specializing in
                 React, Next.js, and cloud-native applications.
               </p>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-              <motion.a
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                href="#projects"
-                className="btn-work flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-3.5 bg-gray-900 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
-                Explore My Work
-                <span className="group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </motion.a>
-
-              <motion.a
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                href="#contact"
-                className="btn-connect flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-3.5 border-2 border-gray-900 text-gray-900 rounded-lg font-medium hover:bg-gray-50 transition-all duration-300"
-              >
-                Let's Connect
-              </motion.a>
-            </div>
-
-            {/* Tech stack indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, staggerChildren: 0.1 }}
-              className="mt-10 md:mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-4"
-            ></motion.div>
-
-            <div className="flex -space-x-3 mr-0 sm:mr-6 items-center">
-              {techList.map((tech) => (
-                <motion.div
-                  key={tech.name}
-                  whileHover={{ y: -4, scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className={`
-          w-9 h-9 md:w-11 md:h-11 rounded-full ${tech.bgColor} ${tech.shadow}
-          border-2 border-white/20 flex items-center justify-center
-          backdrop-blur-sm transition-all duration-300 hover:border-white/40
-        `}
-                  style={{ zIndex: tech.zIndex }}
+              <div className="flex flex-wrap gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-4 md:px-10 py-4 bg-gray-900 text-white rounded-full font-semibold shadow-2xl shadow-gray-400/40 hover:bg-indigo-600 transition-colors"
                 >
-                  <span
-                    className={`text-xs font-semibold ${tech.textColor} tracking-tight`}
-                  >
-                    {tech.name}
-                  </span>
-                </motion.div>
-              ))}
-              <motion.p 
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 0.8 }}
-    transition={{ delay: 0.3 }}
-    className="text-sm text-gray-500 font-sm ml-6"
-  >
-    Technologies I work with daily
-  </motion.p>
-            </div>
-            
-            
-          </motion.div>
+                  View Projects
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-4 md:px-10 py-4 border border-gray-200 rounded-full font-semibold text-gray-900 hover:bg-white transition-all"
+                >
+                  Let's Connect
+                </motion.button>
+              </div>
 
-          {/* Image with creative frame - Hidden on smallest screens */}
-          <motion.div
-            className="relative w-full h-64 sm:h-80 md:h-[32rem] mt-8 sm:mt-0"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl md:rounded-3xl transform rotate-1 shadow-xl md:shadow-2xl"></div>
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl md:rounded-3xl transform -rotate-1 shadow-lg md:shadow-xl"></div>
-            <div className="absolute inset-0 border-4 md:border-8 border-white rounded-2xl md:rounded-3xl overflow-hidden shadow-md md:shadow-lg">
-              <Image
-                src="/images/profiles.jpg"
-                alt="Aashish Nepal - Web Developer"
-                fill
-                className="object-cover object-top"
-                priority
-                quality={100}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </div>
-            {/* Decorative badge - Hidden on mobile */}
-            <div className="hidden sm:flex absolute -right-4 md:-right-6 -bottom-4 md:-bottom-6 bg-white px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-lg border border-gray-100 items-center">
-              <div className="w-2 h-2 md:w-3 md:h-3 bg-green-500 rounded-full mr-1 md:mr-2 animate-pulse"></div>
-              <span className="text-xs md:text-sm font-medium text-gray-700">
-                Available
-              </span>
+              {/* Floating Tech Badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, staggerChildren: 0.1 }}
+                className="mt-10 md:mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-4"
+              ></motion.div>
+
+              <div className="flex -space-x-1 mr-0 sm:mr-6 items-center ">
+                {techList.map(
+                  ({ name, Icon, zIndex, bgColor, textColor, shadow }) => (
+                    <div
+                      key={name}
+                      className={`relative flex items-center gap-3 px-2 py-3 rounded-xl
+                  ${bgColor} ${textColor} ${shadow}`}
+                      style={{ zIndex }}
+                    >
+                      <Icon className="text-2xl" />
+                      <span className="font-semibold tracking-wide">
+                        {name}
+                      </span>
+                    </div>
+                  )
+                )}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* RIGHT IMAGE - ASYMMETRIC FRAME */}
+          <motion.div style={{ y }} className="w-full lg:w-2/5 relative">
+            <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
+              {/* Decorative Frame Elements */}
+              <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-indigo-500 rounded-tl-3xl" />
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b-2 border-r-2 border-indigo-500 rounded-br-3xl" />
+
+              {/* Main Image Container */}
+              <div className="relative h-full w-full rounded-[2rem] overflow-hidden shadow-[0_32px_64px_-15px_rgba(0,0,0,0.2)]">
+                <Image
+                  src="/images/profiles.jpg" // Ensure this path is correct
+                  alt="Aashish Nepal"
+                  fill
+                  className="object-cover scale-105 hover:scale-100 transition-transform duration-700"
+                  priority
+                />
+              </div>
+
+              {/* Status Floating Card */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -right-8 top-20 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 hidden md:block"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-ping absolute inset-0" />
+                    <div className="w-3 h-3 bg-green-500 rounded-full relative" />
+                  </div>
+                  <span className="text-sm font-bold text-gray-800 tracking-tight">
+                    Available for hire
+                  </span>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>

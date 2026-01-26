@@ -192,7 +192,7 @@ export default function About() {
                 </div>
 
                 <div className="space-y-6 md:space-y-8">
-                  <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed text-justify">
                   As a Frontend Architect, I connect design and technology to build systems that look great and work well. I use both technical skills and creative thinking to make sure my solutions are easy to use, smart, reliable, secure, adaptable, fast, scalable, efficient, innovative, user-friendly and ready for the future.
                   </p>
 

@@ -113,7 +113,7 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-10">
+                <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-10 text-justify">
                   {experiences[expandedCard].description}
                 </p>
 
