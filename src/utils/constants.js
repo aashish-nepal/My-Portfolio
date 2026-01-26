@@ -45,7 +45,25 @@ export const experiences = [
       image: '/images/smart-care.png'
     },
     {
-      id: 2,
+      id: 4,
+      title: 'Keyes Real Estate',
+      description: 'A modern real estate website showcasing property listings with a clean UI, responsive design, and smooth user experience.',
+      technologies: ['React', 'Typescript', 'Taillwind', 'Material UI'],
+      githubUrl: 'https://github.com/aashish-nepal/Keyes-Real-Estate',
+      liveUrl: 'https://keyes-realestate.vercel.app/',
+      image: '/images/keyes.png'
+    },
+    {
+      id: 5,
+      title: 'Precision Plumbing',
+      description: 'A professional plumbing business website designed to generate leads, highlight services, and provide easy contact options for customers.',
+      technologies: ['React', 'Node.js', 'TypeScript', 'Tailwind', 'Responsive'],
+      githubUrl: 'https://github.com/aashish-nepal/Precision-Plumbing',
+      liveUrl: 'https://precision-plumbing-sample.vercel.app/',
+      image: '/images/plumb.png'
+    },
+    {
+      id: 4,
       title: 'Marketo',
       description: 'A full-featured e-commerce platform with product listings and Good UI-Designs.',
       technologies: ['Next.js', 'Fake-Store Api', 'Bootstrap', 'Material UI'],
@@ -54,14 +72,16 @@ export const experiences = [
       image: '/images/marketo.png'
     },
     {
-      id: 3,
+      id: 5,
       title: 'Maxium Hotel',
       description: 'Front-end interface for a hotel booking system displaying different room rates and datereservation.',
       technologies: ['React', 'Tailwind', 'Responsive', 'JavaScript'],
       githubUrl: 'https://github.com/aashish-nepal/Hotel-Project',
       liveUrl: 'https://maxium.netlify.app/',
       image: '/images/maxium.png'
-    }
+    },
   ];
+
+  
 
   

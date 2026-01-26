@@ -1,114 +1,117 @@
 import { projects } from '../utils/constants';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiGithub, FiArrowUpRight } from 'react-icons/fi';
 
-// Animation variants
+// Smooth, high-end animation variants
 const container = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
 const item = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 40, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
-    },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   },
 };
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <section id="projects" className="py-32 bg-gray-50 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        {/* Editorial Header Design */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center mb-16"
+          className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">Projects</span>
-          </h2>
-          <div className="w-20 h-1 bg-indigo-600 mx-auto"></div>
-          <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-            A selection of my recent work showcasing my expertise in modern web development.
-          </p>
+          <div className="max-w-2xl">
+          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
+              Selected{" "}
+              <span className="italic font-light text-indigo-600/90">
+                Works
+              </span>
+              .
+            </h2>
+          </div>
+          <div className="hidden md:block h-px flex-1 bg-gray-200 dark:bg-gray-800 mx-10 mb-5" />
         </motion.div>
 
+        {/* Asymmetric Staggered Grid */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20"
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
               variants={item}
-              className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2"
+              className={`group relative ${index % 2 !== 0 ? 'md:mt-32' : ''}`}
             >
-              <div className="relative h-60 overflow-hidden">
+              {/* Image Container with Custom Frame */}
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-200 dark:bg-gray-800 shadow-2xl transition-all duration-500 group-hover:shadow-indigo-500/10">
                 <Image
                   src={project.image}
-                  alt={`Screenshot of ${project.title} project`}
+                  alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  quality={90}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-all duration-700 group-hover:scale-105 grayscale-[30%] group-hover:grayscale-0"
+                  quality={100}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <p className="text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                    {project.description}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-semibold text-gray-900">{project.title}</h3>
-                  <div className="flex space-x-3">
+                
+                {/* Modern Hover Overlay */}
+                <div className="absolute inset-0 bg-gray-900/60 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-[2px] flex items-center justify-center gap-5">
                     {project.githubUrl && (
-                      <a 
-                        href={project.githubUrl}
-                        aria-label={`View source code for ${project.title}`}
-                        className="text-gray-400 hover:text-indigo-600 transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FiGithub className="h-5 w-5" />
-                      </a>
+                        <a 
+                          href={project.githubUrl} 
+                          target="_blank" 
+                          className="p-4 bg-white/10 hover:bg-white text-white hover:text-indigo-600 border border-white/20 rounded-full transition-all duration-300 transform hover:scale-110"
+                        >
+                            <FiGithub className="w-6 h-6" />
+                        </a>
                     )}
                     {project.liveUrl && (
-                      <a 
-                        href={project.liveUrl}
-                        aria-label={`View live demo of ${project.title}`}
-                        className="text-gray-400 hover:text-indigo-600 transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FiExternalLink className="h-5 w-5" />
-                      </a>
+                        <a 
+                          href={project.liveUrl} 
+                          target="_blank" 
+                          className="p-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg"
+                        >
+                            <FiArrowUpRight className="w-6 h-6" />
+                        </a>
                     )}
-                  </div>
+                </div>
+              </div>
+
+              {/* Content Styling - Aligned with your CSS variables */}
+              <div className="mt-8 space-y-4">
+                <div className="flex justify-between items-baseline">
+                    <h3 className="text-3xl font-bold tracking-tight text-gray-900 group-hover:text-indigo-600 transition-colors">
+                        {project.title}
+                    </h3>
+                    <span className="text-sm font-mono text-gray-400 tracking-widest uppercase">
+                        prj — 0{index + 1}
+                    </span>
                 </div>
                 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed line-clamp-2">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
                   {project.technologies.map((tech) => (
                     <span 
                       key={tech} 
-                      className="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700"
+                      className="text-[11px] uppercase tracking-[0.2em] font-bold text-indigo-600/80 dark:text-indigo-400"
                     >
                       {tech}
                     </span>
@@ -119,21 +122,21 @@ export default function Projects() {
           ))}
         </motion.div>
 
+        {/* Footer Link - Using your custom btn-work logic */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="text-center mt-16"
+          className="mt-40 text-center"
         >
           <a
             href="https://github.com/aashish-nepal"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300 shadow-sm"
+            className="group relative inline-flex items-center text-xl font-bold tracking-tight uppercase py-4"
             target="_blank"
             rel="noopener noreferrer"
           >
-            View All Projects
-            <FiExternalLink className="ml-2 h-4 w-4" />
+            <span className="relative z-10 text-gray-900 dark:text-white">View Archive</span>
+            <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-indigo-600 origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-500"></div>
+            <FiArrowUpRight className="ml-3 text-indigo-600 transition-transform duration-300 group-hover:rotate-45" />
           </a>
         </motion.div>
       </div>
