@@ -80,20 +80,22 @@ export default function Hero() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <motion.button
+                <motion.a
+                  href="#projects"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="px-4 md:px-10 py-4 bg-gray-900 text-white rounded-full font-semibold shadow-2xl shadow-gray-400/40 hover:bg-indigo-600 transition-colors"
                 >
                   View Projects
-                </motion.button>
-                <motion.button
+                </motion.a>
+                <motion.a
+                  href="#contact"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-4 md:px-10 py-4 border border-gray-200 rounded-full font-semibold text-gray-900 hover:bg-white transition-all"
+                  className="px-4 md:px-10 py-4 border border-gray-200 rounded-full font-semibold text-gray-900 hover:bg-indigo-600 transition-all"
                 >
                   Let's Connect
-                </motion.button>
+                </motion.a>
               </div>
 
               {/* Floating Tech Badges */}
