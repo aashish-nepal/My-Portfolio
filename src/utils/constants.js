@@ -37,6 +37,25 @@ export const experiences = [
   export const projects = [
     {
       id: 1,
+      title: 'Pixl Tools',
+      description: 'A free online platform offering 30+ image utilities like compression, resizing, format conversion, and background removal. Fast, browser-based, and no sign-up required, making it ideal for quick and private image editing.',
+      technologies: ['Next.js', 'Typescript', 'Sharp', 'Tailwind CSS'],
+      githubUrl: 'https://github.com/aashish-nepal/pixltools',
+      liveUrl: 'https://www.pixltools.com/',
+      image: '/images/pixltools.jpeg'
+    },
+    {
+      id: 2,
+      title: 'Web3 OS',
+      description: 'Full-stack Web3 app with wallet integration (MetaMask, WalletConnect, Coinbase), real-time balances, responsive design, and dark mode, built with Next.js, TypeScript, and Tailwind CSS.',
+      technologies: ['Next.js', 'Typescript', 'Tailwind CSS', 'wagmi', 'viem', 'Resposive'],
+      githubUrl: 'https://github.com/aashish-nepal/Web3-Website',
+      liveUrl: 'https://aashishwebmarket.vercel.app/',
+      image: '/images/webos.jpeg'
+    },
+
+    {
+      id: 3,
       title: 'Smart Care Connects',
       description: 'A full-featured healthcare platform enabling real-time consultations between patients and doctors. Focused on user interface design, accessibility, and performance.',
       technologies: ['Next.js', 'NodeMailer', 'Twilio WebRTC', 'Google FireBase', 'Tailwind CSS'],
@@ -44,6 +63,7 @@ export const experiences = [
       liveUrl: 'https://smartcareconnect.vercel.app/',
       image: '/images/smart-care.png'
     },
+
     {
       id: 4,
       title: 'Keyes Real Estate',
@@ -63,22 +83,13 @@ export const experiences = [
       image: '/images/plumb.png'
     },
     {
-      id: 4,
+      id: 6,
       title: 'Marketo',
       description: 'A full-featured e-commerce platform with product listings and Good UI-Designs.',
       technologies: ['Next.js', 'Fake-Store Api', 'Bootstrap', 'Material UI'],
       githubUrl: 'https://github.com/aashish-nepal/Ecommerce-Site',
       liveUrl: 'https://marketonepal.vercel.app/',
       image: '/images/marketo.png'
-    },
-    {
-      id: 5,
-      title: 'Maxium Hotel',
-      description: 'Front-end interface for a hotel booking system displaying different room rates and datereservation.',
-      technologies: ['React', 'Tailwind', 'Responsive', 'JavaScript'],
-      githubUrl: 'https://github.com/aashish-nepal/Hotel-Project',
-      liveUrl: 'https://maxium.netlify.app/',
-      image: '/images/maxium.png'
     },
   ];
 
