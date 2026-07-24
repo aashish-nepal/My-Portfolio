@@ -85,27 +85,9 @@ export default function Teaching() {
   return (
     <section
       id="teaching"
-      className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-white to-orange-50/40 dark:from-[#080808] dark:to-[#0d0a05] transition-colors duration-700"
+      className="relative py-20 md:py-32 overflow-hidden"
     >
-      {/* Circuit-trace grid — a nod to the hardware side of the classes */}
-      <div
-        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.07] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
-      {/* Noise, matching the texture used across the other sections */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035] dark:opacity-[0.05]"
-        style={{
-          backgroundImage:
-            'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.4"/></svg>\')',
-        }}
-      />
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-orange-400/10 dark:bg-orange-500/5 blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -left-40 w-[28rem] h-[28rem] rounded-full bg-amber-300/10 dark:bg-orange-600/[0.06] blur-3xl pointer-events-none" />
-
+      {/* The circuit grid and its glows are global now — see SiteBackground */}
       <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 z-10">
         {/* Section header — matches the rhythm of the other sections */}
         <motion.div

@@ -14,12 +14,7 @@ export default function Experience() {
   if (!mounted) return null;
 
   return (
-    <section id="experience" className="relative py-20 md:py-32 dark:bg-[#080808] transition-colors duration-700 overflow-hidden">
-      
-      {/* Dynamic Mesh Gradient Background */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
-           style={{ backgroundImage: `linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)`, backgroundSize: '40px 40px' }} 
-      />
+    <section id="experience" className="relative py-20 md:py-32 overflow-hidden">
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 z-10">
 

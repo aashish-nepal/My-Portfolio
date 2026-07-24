@@ -73,7 +73,7 @@ const staggerContainer = {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300">
+    <footer className="relative border-t border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-14 md:py-16">
         {/* 1 → 2 → 4 columns. Going straight to four at md left each column
             about 150px, too narrow for "Python & AI Instruction". */}

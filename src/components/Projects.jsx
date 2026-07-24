@@ -38,37 +38,10 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative py-20 md:py-32 overflow-hidden
-             bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]
-             from-orange-200/20 via-transparent to-transparent
-             dark:from-orange-900/20 dark:via-transparent dark:to-transparent"
+      className="relative py-20 md:py-32 overflow-hidden"
     >
-      {/* Animated gradient mesh */}
-      <div className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,#f9731620,#fb923c20,#fdba7420,#f9731620)]
-                    blur-3xl opacity-70 animate-[spin_30s_linear_infinite] dark:opacity-40"
-        />
-      </div>
-
-      {/* Subtle grid overlay */}
-      <div
-        className="pointer-events-none absolute inset-0
-               bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),
-                   linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)]
-               bg-[size:48px_48px]
-               dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),
-                        linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]"
-      />
-
-      {/* Noise texture (adds depth) */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.06]"
-        style={{
-          backgroundImage:
-            'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.4"/></svg>\')',
-        }}
-      />
+      {/* This section used to carry its own conic mesh and a 48px grid at odds
+          with the 40px one everywhere else — both now come from SiteBackground. */}
       <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         {/* Minimalist Header with Accent Line */}
         <motion.div

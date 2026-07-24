@@ -27,6 +27,26 @@
   --text-secondary: #4b5563; /* gray-600 */
   --bg-primary: #f9fafb; /* gray-50 */
   --accent-color: #ea580c; /* orange-600 */
+
+  /* Background layer — see components/SiteBackground.jsx */
+  --bgfx-grid: rgba(249, 115, 22, 0.07);
+  --bgfx-etch: rgba(249, 115, 22, 0.032);
+  --bgfx-under: rgba(234, 88, 12, 0.1);
+  --bgfx-via: rgba(234, 88, 12, 0.17);
+  --bgfx-stub: rgba(249, 115, 22, 0.12);
+  --bgfx-track: rgba(249, 115, 22, 0.16);
+  --bgfx-pad: rgba(249, 115, 22, 0.5);
+  --bgfx-trail: rgba(249, 115, 22, 0.45);
+  --bgfx-trail-glow: rgba(249, 115, 22, 0.12);
+  --bgfx-pulse: rgba(234, 88, 12, 0.7);
+  --bgfx-beam: rgba(249, 115, 22, 0.16);
+  --bgfx-body: #111827;
+  --bgfx-wheel: rgba(17, 24, 39, 0.5);
+  --bgfx-vent: rgba(255, 255, 255, 0.4);
+  --bgfx-orb-a: rgba(249, 115, 22, 0.13);
+  --bgfx-orb-b: rgba(251, 191, 36, 0.11);
+  --bgfx-orb-c: rgba(234, 88, 12, 0.08);
+  --bgfx-noise: 0.028;
 }
 
 .dark {
@@ -34,8 +54,29 @@
   --header-bg-scrolled: #000000;
   --text-primary: #f3f4f6; /* gray-100 */
   --text-secondary: #d1d5db; /* gray-300 */
-  --bg-primary: #111827; /* gray-900 */
+  /* One dark surface for the whole page. Sections used to each pick their own
+     (#050505, #080808, #0a0a0a, #0d0a05, #111827) and the seams showed. */
+  --bg-primary: #080808;
   --accent-color: #fb923c; /* orange-400 */
+
+  --bgfx-grid: rgba(251, 146, 60, 0.055);
+  --bgfx-etch: rgba(251, 146, 60, 0.026);
+  --bgfx-under: rgba(251, 146, 60, 0.085);
+  --bgfx-via: rgba(251, 146, 60, 0.15);
+  --bgfx-stub: rgba(251, 146, 60, 0.11);
+  --bgfx-track: rgba(251, 146, 60, 0.14);
+  --bgfx-pad: rgba(251, 146, 60, 0.45);
+  --bgfx-trail: rgba(251, 146, 60, 0.5);
+  --bgfx-trail-glow: rgba(251, 146, 60, 0.11);
+  --bgfx-pulse: rgba(253, 186, 116, 0.75);
+  --bgfx-beam: rgba(251, 146, 60, 0.14);
+  --bgfx-body: #d1d5db;
+  --bgfx-wheel: rgba(209, 213, 219, 0.45);
+  --bgfx-vent: rgba(17, 24, 39, 0.55);
+  --bgfx-orb-a: rgba(249, 115, 22, 0.1);
+  --bgfx-orb-b: rgba(217, 119, 6, 0.075);
+  --bgfx-orb-c: rgba(234, 88, 12, 0.06);
+  --bgfx-noise: 0.04;
 }
 
 /*
@@ -78,6 +119,290 @@ svg,
 video,
 canvas {
   max-width: 100%;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Site background — one fixed surface behind every section.
+   Markup in components/SiteBackground.jsx.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* z-index -1 paints above the body background but below all page content, so
+   nothing downstream needs a stacking-context of its own to sit on top.
+   translateZ promotes the whole thing to its own compositor layer, so page
+   scrolling never has to repaint any of it. */
+.bgfx {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+/* Two grids: a fine etch under the main one, the way board substrate reads
+   under the silkscreen. The 8px pitch divides 40 exactly, so they stay in
+   register instead of moiréing against each other. */
+.bgfx-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--bgfx-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bgfx-grid) 1px, transparent 1px),
+    linear-gradient(var(--bgfx-etch) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bgfx-etch) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+}
+
+/*
+ * Ambient wash. Plain radial gradients rather than blurred boxes: a blur filter
+ * on a moving element re-rasterises every frame, a gradient does not. Only
+ * `transform` is animated, so these stay on the compositor entirely.
+ */
+.bgfx-orb {
+  position: absolute;
+  border-radius: 9999px;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+}
+
+.bgfx-orb--a {
+  top: -24%;
+  left: -14%;
+  width: 62vmax;
+  height: 62vmax;
+  background: radial-gradient(circle, var(--bgfx-orb-a) 0%, transparent 62%);
+  animation-name: bgfx-drift-a;
+  animation-duration: 38s;
+}
+
+.bgfx-orb--b {
+  bottom: -28%;
+  right: -16%;
+  width: 68vmax;
+  height: 68vmax;
+  background: radial-gradient(circle, var(--bgfx-orb-b) 0%, transparent 60%);
+  animation-name: bgfx-drift-b;
+  animation-duration: 47s;
+}
+
+.bgfx-orb--c {
+  top: 22%;
+  right: -22%;
+  width: 46vmax;
+  height: 46vmax;
+  background: radial-gradient(circle, var(--bgfx-orb-c) 0%, transparent 64%);
+  animation-name: bgfx-drift-c;
+  animation-duration: 56s;
+}
+
+/*
+ * Pulls the board out of the middle of the screen, where the text column sits,
+ * and leaves the detail in the margins. Doubles as depth — the board reads as
+ * lit from the edges rather than uniformly stamped on.
+ */
+.bgfx-board {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: radial-gradient(ellipse 78% 68% at 50% 46%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.72) 48%, #000 100%);
+  mask-image: radial-gradient(ellipse 78% 68% at 50% 46%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.72) 48%, #000 100%);
+}
+
+/* Inner copper layer + drilled vias */
+.bgfx-under path {
+  fill: none;
+  stroke: var(--bgfx-under);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.bgfx-via circle {
+  fill: none;
+  stroke: var(--bgfx-via);
+  stroke-width: 1.75;
+}
+
+.bgfx-stub path {
+  fill: none;
+  stroke: var(--bgfx-stub);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.bgfx-stub circle {
+  fill: none;
+  stroke: var(--bgfx-stub);
+  stroke-width: 1.75;
+}
+
+.bgfx-noise {
+  position: absolute;
+  inset: 0;
+  opacity: var(--bgfx-noise);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.4"/></svg>');
+}
+
+.bgfx-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The course the robot follows */
+.bgfx-track {
+  fill: none;
+  stroke: var(--bgfx-track);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 9 13;
+}
+
+.bgfx-pad {
+  fill: var(--bgfx-pad);
+  opacity: 0.3;
+  animation: bgfx-pad-breathe 5s ease-in-out infinite;
+}
+
+/*
+ * Trail phase, worked out so the glow sits *behind* the robot rather than
+ * ahead of it: with `stroke-dasharray: 90 1000` the visible dash spans
+ * [t - 90, t] when stroke-dashoffset is 90 - t. The robot is at t
+ * (offset-distance 0 → 100% of a pathLength of 1000), so running dashoffset
+ * from 90 down to -910 over the same duration keeps the head of the dash
+ * locked to the robot for the whole loop.
+ */
+.bgfx-trail {
+  fill: none;
+  stroke: var(--bgfx-trail);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 90 1000;
+  animation-name: bgfx-trail;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.bgfx-trail--glow {
+  stroke: var(--bgfx-trail-glow);
+  stroke-width: 10;
+}
+
+.bgfx-beam {
+  fill: var(--bgfx-beam);
+}
+.bgfx-body {
+  fill: var(--bgfx-body);
+}
+.bgfx-wheel {
+  fill: var(--bgfx-wheel);
+}
+.bgfx-vent {
+  fill: var(--bgfx-vent);
+}
+.bgfx-eye {
+  fill: rgb(249 115 22);
+}
+.bgfx-pulse {
+  fill: var(--bgfx-pulse);
+}
+
+/*
+ * Motion path drives both the robot and the signal dot. `transform-box:
+ * view-box` puts path() coordinates in viewBox user units — the same space the
+ * track is authored in — and `transform-origin: 0 0` anchors each sprite at
+ * that origin, which is exactly where its artwork is centred.
+ *
+ * Without offset-path support both would pile up at the viewBox origin, so
+ * they stay hidden unless the browser can actually place them.
+ */
+.bgfx-bot,
+.bgfx-pulse {
+  opacity: 0;
+}
+
+@supports (offset-path: path("M 0 0 L 1 1")) {
+  .bgfx-bot,
+  .bgfx-pulse {
+    opacity: 1;
+    transform-box: view-box;
+    transform-origin: 0 0;
+    offset-rotate: auto;
+    animation-name: bgfx-drive;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes bgfx-drive {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes bgfx-trail {
+  from {
+    stroke-dashoffset: 90;
+  }
+  to {
+    stroke-dashoffset: -910;
+  }
+}
+
+@keyframes bgfx-pad-breathe {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+/* Transform-only, so each orb is just a texture the compositor moves */
+@keyframes bgfx-drift-a {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(7%, 5%, 0) scale(1.14);
+  }
+}
+
+@keyframes bgfx-drift-b {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+  to {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+}
+
+@keyframes bgfx-drift-c {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-5%, 8%, 0) scale(1.18);
+  }
+}
+
+/*
+ * Scrolling is motion enough. The class is toggled on <html> by
+ * SiteBackground.jsx for as long as the page is moving, plus a short tail so
+ * momentum scrolling doesn't flicker it on and off. Paused rather than stopped,
+ * so everything picks up from exactly where it was once you settle.
+ */
+.bgfx-still .bgfx-orb,
+.bgfx-still .bgfx-pad,
+.bgfx-still .bgfx-trail,
+.bgfx-still .bgfx-pulse,
+.bgfx-still .bgfx-bot {
+  animation-play-state: paused;
 }
 
 /* Custom transitions */

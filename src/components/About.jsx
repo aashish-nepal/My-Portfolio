@@ -87,18 +87,9 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-[#111827] dark:to-[#080808] transition-colors duration-700"
+      className="relative py-20 md:py-32 overflow-hidden"
     >
-      {/* Same grid + glow treatment as Teaching and Experience */}
-      <div
-        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.06] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div className="absolute -top-40 -left-32 w-96 h-96 rounded-full bg-orange-400/10 dark:bg-orange-500/5 blur-3xl pointer-events-none" />
-
+      {/* Surface, grid and glow all come from <SiteBackground /> */}
       <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 z-10">
         {/* Header — same rhythm as every other section */}
         <motion.div

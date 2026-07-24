@@ -3,6 +3,7 @@ import Head from 'next/head';
 import "../styles/globals.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SiteBackground from '../components/SiteBackground';
 
 function MyApp({ Component, pageProps }) {
   // Initialize dark mode from localStorage
@@ -82,8 +83,13 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
 
-      {/* Sections manage their own horizontal padding so their backgrounds can run full-bleed. */}
-      <div className="bg-gray-50 dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
+      {/*
+        * Sections manage their own horizontal padding, and are transparent —
+        * the surface behind all of them comes from <SiteBackground /> so the
+        * page reads as one continuous backdrop instead of a stack of panels.
+        */}
+      <div className="relative text-gray-900 dark:text-gray-100 min-h-screen">
+        <SiteBackground />
         <Header />
         <main>
           <Component {...pageProps} />
