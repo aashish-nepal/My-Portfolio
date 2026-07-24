@@ -1,5 +1,20 @@
 export const experiences = [
   {
+    position: "Python, AI & Robotics Instructor",
+    type: "teaching", // drives the "Teaching" badge in the Experience UI
+    duration: "Present",
+    company: "Schools & Training Institutes, Kathmandu",
+    description:
+      "Teach Python, applied AI, and hands-on robotics to students moving from first principles to working builds. Design the curriculum, write the lab exercises, and run every class as a build session rather than a lecture.",
+    achievements: [
+      "Built a three-track curriculum: Python, applied AI, and robotics.",
+      "Run Arduino and Raspberry Pi labs — first sensor to line-following robot.",
+      "Teach ROS, simulation, and autonomous navigation past the fundamentals.",
+      "Mentor capstone builds and code review.",
+    ],
+    technologies: ["Python", "Arduino", "Raspberry Pi", "ROS", "Robotics", "Curriculum Design"],
+  },
+  {
     position: "Full-Stack",
     duration: "Jan 2024 – Apr 2024",
     company: "Smart Care Connects (Capstone Project)",
@@ -92,6 +107,86 @@ export const experiences = [
       image: '/images/marketo.png'
     },
   ];
+
+/**
+ * Teaching practice — the three tracks I run, ordered as a progression.
+ * `level` and `topics` drive the card UI in components/Teaching.jsx.
+ */
+export const courses = [
+  {
+    id: 1,
+    track: "Track 01",
+    title: "Python Foundations",
+    level: "Beginner",
+    tagline: "From first line to first program that matters.",
+    description:
+      "The language, properly. Syntax and control flow, then data structures, functions, and object-oriented design — finishing with automation scripts students actually keep using.",
+    topics: [
+      "Syntax & control flow",
+      "Data structures",
+      "Functions & modules",
+      "OOP",
+      "File & data handling",
+      "Automation scripting",
+    ],
+    outcome: "Write and debug real Python independently.",
+  },
+  {
+    id: 2,
+    track: "Track 02",
+    title: "Arduino & Raspberry Pi",
+    level: "Intermediate",
+    tagline: "Where the code leaves the screen.",
+    description:
+      "Microcontrollers and single-board computers from the ground up. Students wire their first circuit, read a sensor, drive a motor, and close the loop into a robot that responds to the world.",
+    topics: [
+      "Microcontrollers",
+      "Sensors & actuators",
+      "Embedded C",
+      "Motor control",
+      "Serial communication",
+      "Line-follower bots",
+    ],
+    outcome: "Build and program a working autonomous robot.",
+  },
+  {
+    id: 3,
+    track: "Track 03",
+    title: "ROS & Advanced Robotics",
+    level: "Advanced",
+    tagline: "Robots that think before they move.",
+    description:
+      "The Robot Operating System as professionals use it — nodes, topics, and services — plus simulation and the navigation stack that turns a chassis into an autonomous system.",
+    topics: [
+      "ROS architecture",
+      "Nodes & topics",
+      "Simulation",
+      "SLAM & mapping",
+      "Autonomous navigation",
+      "Sensor fusion",
+    ],
+    outcome: "Ship an autonomous navigation project end to end.",
+  },
+];
+
+/** How the classes are run — the pedagogy, not the syllabus. */
+export const teachingApproach = [
+  {
+    title: "Build first, theory second",
+    description:
+      "Every session ends with something that runs. Concepts land when there is working code to attach them to.",
+  },
+  {
+    title: "Taught from practice",
+    description:
+      "I ship production software daily. Students learn the tools and habits actually used in the field, not textbook abstractions.",
+  },
+  {
+    title: "Hardware in hand",
+    description:
+      "Robotics is not a slide deck. Real boards, real sensors, real wiring mistakes — and the debugging skill that comes from fixing them.",
+  },
+];
 
   
 

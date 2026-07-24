@@ -43,17 +43,19 @@ const socialLinks = [
 
 const navigationLinks = [
   { name: 'About', href: '#about' },
+  { name: 'Teaching', href: '#teaching' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' }
 ];
 
 const services = [
-  'Web Development',
-  'UI/UX Design',
-  'Mobile Apps',
-  'Technical Consulting',
-  'Performance Optimization'
+  { name: 'Web Development' },
+  { name: 'UI/UX Design' },
+  { name: 'Technical Consulting' },
+  { name: 'Python & AI Instruction', teaching: true },
+  { name: 'Robotics Workshops', teaching: true },
+  { name: 'Curriculum Design', teaching: true }
 ];
 
 const fadeInVariants = {
@@ -72,9 +74,11 @@ const staggerContainer = {
 export default function Footer() {
   return (
     <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-16"
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-14 md:py-16">
+        {/* 1 → 2 → 4 columns. Going straight to four at md left each column
+            about 150px, too narrow for "Python & AI Instruction". */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -83,24 +87,31 @@ export default function Footer() {
           {/* Brand Column */}
           <motion.div variants={fadeInVariants}>
             <div className="flex items-center mb-6">
-              <div className="bg-indigo-600 text-white p-2 rounded-lg mr-3">
+              <div className="bg-orange-600 text-white p-2 rounded-lg mr-3 shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Aashish Nepal</h3>
+              <div className="min-w-0">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">Aashish Nepal</h3>
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-gray-400">
+                  Developer <span className="text-orange-500">/</span> Instructor
+                </span>
+              </div>
             </div>
             <p className="text-gray-500 dark:text-gray-400 mb-6 leading-relaxed">
-              Delivering exceptional digital experiences through innovative solutions and cutting-edge technologies.
+              Building production software, and teaching Python, AI and robotics to the people who&apos;ll build what comes next.
             </p>
-            <div className="flex space-x-4">
+            {/* p-2.5 turns a 20px glyph into a 40px hit area; the negative
+                margin keeps the row visually flush with the text above it. */}
+            <div className="flex gap-1 -ml-2.5">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                  className="p-2.5 text-gray-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-300"
                   whileHover={{ y: -3 }}
                   variants={fadeInVariants}
                   custom={index}
@@ -115,11 +126,11 @@ export default function Footer() {
           {/* Navigation Column */}
           <motion.div variants={fadeInVariants}>
             <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white mb-6">Navigation</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-1">
               {navigationLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 flex items-center">
-                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span>
+                  <Link href={link.href} className="py-2 text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-300 flex items-center">
+                    <span className="w-1.5 h-1.5 shrink-0 bg-gray-400 rounded-full mr-3"></span>
                     {link.name}
                   </Link>
                 </li>
@@ -132,9 +143,9 @@ export default function Footer() {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white mb-6">Expertise</h4>
             <ul className="space-y-3">
               {services.map((service) => (
-                <li key={service} className="text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 flex items-center">
-                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span>
-                  {service}
+                <li key={service.name} className="text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-300 flex items-center">
+                  <span className={`w-1.5 h-1.5 shrink-0 rounded-full mr-3 ${service.teaching ? 'bg-orange-500' : 'bg-gray-400'}`}></span>
+                  {service.name}
                 </li>
               ))}
             </ul>
@@ -145,19 +156,19 @@ export default function Footer() {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white mb-6">Get In Touch</h4>
             <address className="not-italic text-gray-500 dark:text-gray-400 space-y-4">
               <div className="flex items-start">
-                <svg className="w-5 h-5 text-indigo-500 dark:text-indigo-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-orange-500 dark:text-orange-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:nepal.aashish00@gmail.com" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">nepal.aashish00@gmail.com</a>
+                <a href="mailto:nepal.aashish00@gmail.com" className="min-w-0 -mt-2 py-2 wrap-anywhere hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-300">nepal.aashish00@gmail.com</a>
               </div>
               <div className="flex items-start">
-                <svg className="w-5 h-5 text-indigo-500 dark:text-indigo-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-orange-500 dark:text-orange-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <a href="tel:+9779869100969" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">+977 9869100969</a>
+                <a href="tel:+9779869100969" className="-mt-2 py-2 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-300">+977 9869100969</a>
               </div>
               <div className="flex items-start">
-                <svg className="w-5 h-5 text-indigo-500 dark:text-indigo-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-orange-500 dark:text-orange-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -176,7 +187,7 @@ export default function Footer() {
         >
           <p className="text-sm text-gray-500 dark:text-gray-400">
             &copy; {new Date().getFullYear()} Aashish Nepal. All rights reserved. 
-            <span className="block sm:inline mt-1 sm:mt-0 sm:ml-2">Built with <span className="text-indigo-600 dark:text-indigo-400">Next.js</span>, <span className="text-indigo-600 dark:text-indigo-400">Tailwind CSS</span>, and <span className="text-indigo-600 dark:text-indigo-400">Framer Motion</span>.</span>
+            <span className="block sm:inline mt-1 sm:mt-0 sm:ml-2">Built with <span className="text-orange-600 dark:text-orange-400">Next.js</span>, <span className="text-orange-600 dark:text-orange-400">Tailwind CSS</span>, and <span className="text-orange-600 dark:text-orange-400">Framer Motion</span>.</span>
           </p>
         </motion.div>
       </div>
