@@ -190,7 +190,7 @@ export default function Hero() {
               {/* Main Image Container */}
               <div className="relative h-full w-full rounded-3xl sm:rounded-4xl overflow-hidden shadow-[0_32px_64px_-15px_rgba(0,0,0,0.2)]">
                 <Image
-                  src="/images/profiles.jpg" // Ensure this path is correct
+                  src="/images/profile.jpg" // Ensure this path is correct
                   alt="Aashish Nepal"
                   fill
                   sizes="(max-width: 640px) 80vw, (max-width: 1024px) 28rem, 40vw"
